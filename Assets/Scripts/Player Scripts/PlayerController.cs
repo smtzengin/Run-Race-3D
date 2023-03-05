@@ -17,6 +17,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.finish)
+        {
+            move = Vector3.zero;
+            if (!charController.isGrounded)
+                verticalVelocity -= gravity * Time.deltaTime;
+            else
+                verticalVelocity = 0;
+            move.y = verticalVelocity;
+            charController.Move(new Vector3(0, move.y * Time.deltaTime, 0));
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Dance"))
+            {
+                anim.SetTrigger("Dance");
+                transform.eulerAngles = Vector3.up * 180;
+            }
+            return;
+        }
+
         move = Vector3.zero;
         move = transform.forward;
 
@@ -68,7 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!charController.isGrounded)
         {
-            if(hit.collider.tag == "Wall")
+            if(hit.collider.tag == "Wall" || hit.collider.tag == "Slide")
             {
                 if (verticalVelocity < -.7f)
                     wallSlide = true;

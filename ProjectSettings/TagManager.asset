@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - Ground
   - Slide
+  - CheckPoint
+  - Runner
   layers:
   - Default
   - TransparentFX
