@@ -6,6 +6,7 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    private InGame ig;
 
     private GameObject[] runners;
 
@@ -15,12 +16,14 @@ public class GameManager : MonoBehaviour
 
     public string firstPlace, secondPlace, thirdPlace;
 
-    public bool finish;
+    public bool finish,failed;
     private void Awake()
     {
         instance = this;
 
         runners = GameObject.FindGameObjectsWithTag("Runner");
+
+        ig = FindObjectOfType<InGame>();
     }
 
     void Start()
@@ -46,17 +49,27 @@ public class GameManager : MonoBehaviour
                 sortArray[0].rank = 3;
                 sortArray[1].rank = 2;
                 sortArray[2].rank = 1;
+                ig.a = sortArray[2].name;
+                ig.b = sortArray[1].name;
+                ig.c = sortArray[0].name;
                 break;
             case 2:
                 sortArray[0].rank = 2;
                 sortArray[1].rank = 1;
+
+                ig.a = sortArray[1].name;
+                ig.b = sortArray[0].name;
+
+                ig.thirdPlaceImg.color = Color.red;
                 break;
             case 1:
                 sortArray[0].rank = 1;
                 if(firstPlace == "")
                 {
                     firstPlace = sortArray[0].name;
-                    //OpenLeaderBoard
+                    ig.a = sortArray[0].name;
+                    ig.secondPlaceImg.color = Color.red;
+                    GameUI.instance.OpenLBP();
                 } 
                 break;
         }
@@ -72,8 +85,8 @@ public class GameManager : MonoBehaviour
                 {
                     if(rs.gameObject.name == "Player")
                     {
-                        //OpenUpThePanel
-                        // you have failed
+                        GameUI.instance.OpenLBP();
+                        failed = true;
                     }
 
                     if (thirdPlace == "")
