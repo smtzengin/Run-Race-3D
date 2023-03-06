@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public string firstPlace, secondPlace, thirdPlace;
 
-    public bool finish,failed;
+    public bool finish,failed,start;
     private void Awake()
     {
         instance = this;

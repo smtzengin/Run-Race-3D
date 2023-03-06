@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 move;
     public float speed, jumpForce, gravity, verticalVelocity;
     private CharacterController charController;
-    private bool wallSlide,turn;
+    private bool wallSlide,turn, superJump;
     private Animator anim;
 
     private void Awake()
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
             }
             return;
         }
+        if (!GameManager.instance.start)
+            return;
 
         move = Vector3.zero;
         move = transform.forward;
@@ -50,8 +52,16 @@ public class PlayerController : MonoBehaviour
             {
                 turn = false;
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
-            }
+            }            
         }
+        if (superJump)
+        {
+            superJump = false;
+            verticalVelocity = jumpForce * 1.75f;
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+                anim.SetTrigger("Jump");
+        }
+
         if (!wallSlide)
         {
             gravity = 30;
@@ -87,7 +97,7 @@ public class PlayerController : MonoBehaviour
         {
             if(hit.collider.tag == "Wall" || hit.collider.tag == "Slide")
             {
-                if (verticalVelocity < -.7f)
+                if (verticalVelocity < -.6f)
                     wallSlide = true;
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
@@ -99,7 +109,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(transform.forward != hit.collider.transform.up && hit.collider.tag == "Ground" && !turn)
+            if (hit.collider.tag == "Trampoline" && charController.isGrounded)
+                superJump = true;
+
+            if(transform.forward != hit.collider.transform.up && transform.forward != hit.transform.right 
+                && hit.collider.tag == "Ground" && !turn)
                 turn = true;
         }
     }

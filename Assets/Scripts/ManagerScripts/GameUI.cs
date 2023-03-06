@@ -10,10 +10,12 @@ public class GameUI : MonoBehaviour
     public GameObject inGame, leaderBoardPanel;
 
     private Button nextLevel;
+    public Text countText;
 
     private void Awake()
     {
         instance = this;
+        StartCoroutine(StartGame());
     }
 
     void Update()
@@ -26,10 +28,29 @@ public class GameUI : MonoBehaviour
                 Restart();
             }
         }
-        
-        
+   
     }
 
+    IEnumerator StartGame()
+    {
+        for(int i = 3; i >= 0; i--)
+        {
+            if(i == 0)
+            {
+                countText.text = "GO!";
+                countText.color = Color.magenta;
+            }
+            else
+            {
+                countText.text = i.ToString();
+                yield return new WaitForSeconds(1);
+                countText.color = Color.magenta;
+            }  
+        }
+        GameManager.instance.start = true;
+        yield return new WaitForSeconds(.5f);
+        countText.gameObject.SetActive(false);
+    }
     
 
     public void OpenLBP()
