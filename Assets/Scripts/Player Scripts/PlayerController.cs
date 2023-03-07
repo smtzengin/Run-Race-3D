@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,11 +8,17 @@ public class PlayerController : MonoBehaviour
     private bool wallSlide,turn, superJump;
     private Animator anim;
 
+    private SkinnedMeshRenderer playerColor;
+    public Material[] colors;
+    
     private void Awake()
     {
+        playerColor = GameObject.Find("PlayerColor").GetComponent<SkinnedMeshRenderer>();
         charController = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         gameObject.name = PlayerPrefs.GetString("PlayerName", "Player");
+
+        playerColor.material = colors[PlayerPrefs.GetInt("PlayerColor", 0)];
     }
 
     void Update()

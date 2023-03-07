@@ -275,6 +275,11 @@ MonoBehaviour:
   jumpForce: 20
   gravity: 0
   verticalVelocity: 0
+  colors:
+  - {fileID: 2100000, guid: 00f213278f99b63489f5427ea01397ec, type: 2}
+  - {fileID: 2100000, guid: 45596b30044892b41829641b2cdb40db, type: 2}
+  - {fileID: 2100000, guid: 25335fe74c883664e9a0f44c2d6c3e18, type: 2}
+  - {fileID: 2100000, guid: 9b4242804ee44e9498464ecfbb821c91, type: 2}
 --- !u!114 &1219674772857355886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 33.104786
+      objectReference: {fileID: 0}
+    - target: {fileID: -3449532170947455738, guid: 06e22a7583abf684c93470dbce7fa88d,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerColor
       objectReference: {fileID: 0}
     - target: {fileID: -3220319501169496967, guid: 06e22a7583abf684c93470dbce7fa88d,
         type: 3}
