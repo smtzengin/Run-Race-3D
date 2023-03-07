@@ -2564,9 +2564,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 776737583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50e150cb4f5fce4ba039e057d67022b, type: 3}
+  m_Script: {fileID: 11500000, guid: c88a5fab6da64a3469d44c5d0326e905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPoints: []
+  currentCheckPoint: 1
 --- !u!1001 &806001588
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     {
         charController = GetComponent<CharacterController>();
         anim = transform.GetChild(0).GetComponent<Animator>();
+        gameObject.name = PlayerPrefs.GetString("PlayerName", "Player");
     }
 
     void Update()

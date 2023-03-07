@@ -369,6 +369,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGame: {fileID: 1197077879721730425}
   leaderBoardPanel: {fileID: 1197077879574350454}
+  currentLevelText: {fileID: 1197077879280995842}
+  nextLevelText: {fileID: 1197077880222222823}
+  fill: {fileID: 1197077880592710384}
+  orange: {fileID: 21300000, guid: 288773705654be74598851514d1638fb, type: 3}
+  gray: {fileID: 21300000, guid: aa86946e1c51bca4bb5204b5bc289631, type: 3}
   countText: {fileID: 54291189}
 --- !u!1 &1197077878949604444
 GameObject:
