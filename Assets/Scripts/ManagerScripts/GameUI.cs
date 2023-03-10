@@ -33,6 +33,8 @@ public class GameUI : MonoBehaviour
                 Restart();
             }
         }
+
+        print(PlayerPrefs.GetInt("Level"));
    
     }
 
@@ -68,6 +70,7 @@ public class GameUI : MonoBehaviour
             nextLevelText.text = PlayerPrefs.GetInt("Level",1) + 1 + "";
             fill.sprite = gray;
         }
+        
         else
         {
             currentLevelText.text = PlayerPrefs.GetInt(("Level"), 1) - 1 + "";

@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
         runners = GameObject.FindGameObjectsWithTag("Runner");
 
         ig = FindObjectOfType<InGame>();
+
+        if(PlayerPrefs.GetInt("Level") == 0)
+        {
+            PlayerPrefs.SetInt("Level", 1);
+        }
     }
 
     void Start()
